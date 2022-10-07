@@ -1,9 +1,8 @@
 package com.paramonga.ssff.services.impl;
 
-
-import com.paramonga.ssff.entities.VaNomMaestro;
-import com.paramonga.ssff.repositories.VaNomMaestroSErviceRepository;
-import com.paramonga.ssff.services.VaNomMaestroService;
+import com.paramonga.ssff.entities.Datos;
+import com.paramonga.ssff.repositories.DatosRepository;
+import com.paramonga.ssff.services.DatosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -13,13 +12,11 @@ import java.util.List;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-public class VaNomMaestroServiceImpl implements VaNomMaestroService {
-
+public class DatosServiceImpl implements DatosService {
     @Autowired
-    private VaNomMaestroSErviceRepository repository;
-
+    private DatosRepository repository;
     @Override
-    public List<VaNomMaestro> obtenerTodos() {
-        return repository.obtenerTodos();
+    public List<Datos> filtroByDateRange(String fecini, String fecfin, String estacion) {
+        return repository.getByDateRange(estacion,fecini,fecfin);
     }
 }

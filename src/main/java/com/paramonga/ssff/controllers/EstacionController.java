@@ -1,0 +1,39 @@
+package com.paramonga.ssff.controllers;
+
+import com.paramonga.ssff.entities.Datos;
+import com.paramonga.ssff.entities.Estacion;
+import com.paramonga.ssff.mapper.DatosMapper;
+import com.paramonga.ssff.services.impl.DatosServiceImpl;
+import com.paramonga.ssff.services.impl.EstacionServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Optional;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
+@RestController
+@RequestMapping("/estacion")
+public class EstacionController {
+    @Autowired
+    private EstacionServiceImpl service;
+
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Estacion>> getListaEstacion() throws URISyntaxException {
+        try {
+            List<Estacion> lista= service.getAll();
+
+            return Optional.ofNullable(lista)
+                    .map(l -> new ResponseEntity<>(l, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        } catch (Exception e) {
+            throw new RuntimeException(e.toString());
+        }
+    }
+}

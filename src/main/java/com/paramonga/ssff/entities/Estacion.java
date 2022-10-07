@@ -8,16 +8,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "fab_ensacadora_rango_histograma")
+@Table(name = "meteorol_estacion")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class VaNomMaestro {
-
+public class Estacion {
     @Id
-    @Column(name = "presentacion")
-    private Double presentacion;
+    @Column(name = "meteorol_estacion")
+    private String meteorolEstacion;
+
+    @Column(name = "descripcion")
+    private String descripcion;
 
 }

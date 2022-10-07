@@ -124,7 +124,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>p_fabEnsacadora</finalName>
+		<finalName>q_meteorologia</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
